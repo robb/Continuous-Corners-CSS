@@ -1,0 +1,171 @@
+<html>
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+        <title>Robb Böhnke</title>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+                padding: 32px;
+
+                font-size: 14px;
+                line-height: 16px;
+
+                background-color: #FAFAFA;
+            }
+
+            a {
+                color: inherit;
+            }
+
+            body, main, .example, chat {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            footer {
+                position: fixed;
+                bottom: 32px;
+            }
+
+            h1 {
+                font-size: 24px;
+                line-height: 32px;
+            }
+
+            h2, h3 {
+                font-size: 18px;
+                line-height: 16px;
+            }
+
+            .warning {
+                margin-top: 16px;
+                border: 1px solid red;
+                padding: 16px;
+                background-color: #FAA;
+                color: black;
+            }
+
+            .example {
+                background: #99F;
+                width: 512px;
+                max-width: 100%;
+                min-height: 160px;
+                padding: 40px;
+                color: black;
+            }
+
+            .example.circular-corners {
+                border-radius: 50px;
+            }
+
+            @supports (mask-border-width: 50px) {
+                .warning {
+                    display: none;
+                }
+
+                .example.continuous-corners {
+                    mask-border: url("./mask@1x.png") 49% fill / 75px;
+                }
+
+                @media (min-resolution: 2x) {
+                    .example.continuous-corners {
+                        mask-border: url("./mask@2x.png") 49% fill / 75px;
+                    }
+                }
+
+                @media (min-resolution: 3x) {
+                    .example.continuous-corners {
+                        mask-border: url("./mask@3x.png") 49% fill / 75px;
+                    }
+                }
+            }
+
+            .circular-vs-continous {
+                position: relative;
+                isolation: isolate;
+                height: 240px;
+            }
+
+            .circular-vs-continous .example {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            .circular-vs-continous .example.circular-corners {
+                background-color: #000;
+                color: white;
+            }
+
+            .circular-vs-continous .example.continuous-corners {
+                mix-blend-mode: exclusion;
+                background-color: #FFF;
+            }
+
+            .bubble {
+                mask-border: url("./bubble.png") 49% fill / 25px;
+                background: linear-gradient(
+                    in oklab,
+                    rgb(90, 25, 255),
+                    rgb(0, 83, 220)
+                );
+                padding: 12px 16px 12px 16px;
+                color: white;
+                max-width: 290px;
+                hyphens: auto;
+
+                line-height: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Continuous Corners in CSS</h1>
+            <div class="warning">Your browser does not support the
+                <code>mask-border</code> property. Try using Safari.
+            </div>
+        </header>
+        <main>
+            <div class="example circular-corners">
+                <h3>Circular Corners</h2>
+                <p>
+                    <code>border-radius: 50px;</code>
+                </p>
+            </div>
+            <div class="example continuous-corners">
+                <h3>Continuous Corners</h2>
+                <p>
+                    <code>mask-border: url("<a
+                            href="./mask@2x.png">mask@2x.png</a>") 49% fill /
+                        75px;</code>
+                </p>
+            </div>
+            <div class="circular-vs-continous">
+                <div class="example circular-corners">
+                    <h3>Difference</h2>
+                </div>
+                <div class="example continuous-corners">
+                </div>
+            </div>
+            <h2>Extra:</h2>
+            <div class="bubble">
+                <p>You can use the <code>mask-border</code> property for more
+                    complicated shapes, too.</p>
+            </div>
+        </main>
+        <footer>
+            by Robb Böhnke – <a href="https://robb.is">robb.is</a>
+        </footer>
+    </body>
+</html>
